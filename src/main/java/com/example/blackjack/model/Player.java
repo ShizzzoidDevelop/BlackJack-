@@ -60,16 +60,16 @@ public class Player {
     }
 
     public void payoutBlackjack() {
-        int win = (int) Math.round(currentBet * 2.5); // ставка + 3:2 выплата
+        int win = (int) Math.round(currentBet * 2.5);
         chipsBalance += win;
     }
 
     public void payoutWin() {
-        chipsBalance += currentBet * 2; // ставка возвращается + выигрыш 1:1
+        chipsBalance += currentBet * 2;
     }
 
     public void payoutPush() {
-        chipsBalance += currentBet; // вернуть ставку
+        chipsBalance += currentBet;
     }
 }
 

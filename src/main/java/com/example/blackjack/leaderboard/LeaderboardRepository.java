@@ -36,7 +36,6 @@ public class LeaderboardRepository {
                 map.put(name, new LeaderboardEntry(name, profit, t));
             }
         } catch (IOException | NumberFormatException e) {
-            // игнорировать испорченные записи
         }
         List<LeaderboardEntry> list = new ArrayList<>(map.values());
         Collections.sort(list);

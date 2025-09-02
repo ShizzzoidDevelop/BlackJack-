@@ -8,7 +8,7 @@ public class BlackjackGame {
     private final Dealer dealer = new Dealer();
     private GameState state = GameState.WAITING_FOR_BET;
     private Outcome lastOutcome;
-    private boolean dealerHitsSoft17 = false; // классика: дилер стоит на 17
+    private boolean dealerHitsSoft17 = false;
 
     public BlackjackGame(Player player) {
         this.player = player;
@@ -36,7 +36,7 @@ public class BlackjackGame {
         }
         player.clearForNewRound();
         dealer.clearForNewRound();
-        deck.resetForNewRound(); // Сбросить и перемешать колоду для нового раунда
+        deck.resetForNewRound();
         if (!player.canPlaceBet(bet)) {
             throw new IllegalArgumentException("Недостаточно фишек для ставки");
         }
@@ -45,14 +45,12 @@ public class BlackjackGame {
     }
 
     private void dealInitial() {
-        // Игрок, дилер, игрок, дилер
         player.getHand().add(deck.draw());
         dealer.getHand().add(deck.draw());
         player.getHand().add(deck.draw());
         dealer.getHand().add(deck.draw());
 
         if (player.getHand().isBlackjack()) {
-            // проверить дилера на блэкджек
             if (dealer.getHand().isBlackjack()) {
                 state = GameState.ROUND_OVER;
                 lastOutcome = Outcome.PUSH;
@@ -103,7 +101,6 @@ public class BlackjackGame {
     }
 
     private int dealerPlay() {
-        // Правила дилера: брать до 17. Если hitsSoft17=true, то брать на soft 17.
         int before = dealer.getHand().getCards().size();
         while (true) {
             int value = dealer.getHand().getBestValue();

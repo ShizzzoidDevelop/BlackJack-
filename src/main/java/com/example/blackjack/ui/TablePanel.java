@@ -20,7 +20,7 @@ public class TablePanel extends JPanel {
     private String pendingBannerText;
     private Runnable onAnimationStateChange;
     private boolean lastAnimating = false;
-    private int roundBet = 0; // Ставка текущего раунда
+    private int roundBet = 0;
 
     public TablePanel(BlackjackGame game) {
         this.game = game;
@@ -63,8 +63,8 @@ public class TablePanel extends JPanel {
         // Отрисовка фишки ставки в правой верхней четверти экрана
         int currentBet = game.getPlayer().getCurrentBet();
         if (currentBet > 0) {
-            int chipX = width - 80; // Правая часть экрана
-            int chipY = 80; // Верхняя часть экрана
+            int chipX = width - 80;
+            int chipY = 80;
             drawChip(g2, chipX, chipY, 25, currentBet);
         }
 
@@ -121,7 +121,7 @@ public class TablePanel extends JPanel {
         for (int i = 0; i < cards.size(); i++) {
             int cx = x + i * (cw + spacing);
             if (isCardUnderAnimation(isDealer, i)) {
-                continue; // карту нарисует анимация
+                continue;
             }
             if (hideHole && i == 1) {
                 drawCardBack(g2, cx, y, cw, ch);
@@ -245,10 +245,10 @@ public class TablePanel extends JPanel {
         if (dealerCount < 2 || playerCount < 2) return;
         // последовательность: P0, D0, P1, D1 с увеличенными задержками
         long base = System.currentTimeMillis();
-        animations.add(new CardAnimation(false, 0, base + 0, 500));      // Игрок 1-я карта
-        animations.add(new CardAnimation(true, 0, base + 400, 500));     // Дилер 1-я карта
-        animations.add(new CardAnimation(false, 1, base + 800, 500));    // Игрок 2-я карта
-        animations.add(new CardAnimation(true, 1, base + 1200, 500));   // Дилер 2-я карта
+        animations.add(new CardAnimation(false, 0, base + 0, 500));
+        animations.add(new CardAnimation(true, 0, base + 400, 500));
+        animations.add(new CardAnimation(false, 1, base + 800, 500));
+        animations.add(new CardAnimation(true, 1, base + 1200, 500));
         ensureTimer();
     }
 
@@ -271,7 +271,7 @@ public class TablePanel extends JPanel {
     }
 
     public void animateBet(int amount) {
-        this.roundBet = amount; // Сохраняем ставку раунда
+        this.roundBet = amount;
         animations.add(new BetAnimation(amount, System.currentTimeMillis(), 400));
         ensureTimer();
     }
@@ -341,7 +341,7 @@ public class TablePanel extends JPanel {
         Point currentPosition(int width, int height, int cw, int ch, int spacing) {
             int dealerY = 30;
             int playerY = height - ch - 30;
-            int xStart = width / 2 - cw / 2; // позиция колоды по центру сверху
+            int xStart = width / 2 - cw / 2;
             int yStart = 10;
             int xTarget = 20 + targetIndex * (cw + spacing);
             int yTarget = targetIsDealer ? dealerY : playerY;

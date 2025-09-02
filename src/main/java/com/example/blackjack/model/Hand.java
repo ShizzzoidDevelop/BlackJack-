@@ -27,7 +27,7 @@ public class Hand {
             if (c.getRank() == Rank.ACE) aceCount++;
         }
         while (total > 21 && aceCount > 0) {
-            total -= 10; // считать туз как 1 вместо 11
+            total -= 10;
             aceCount--;
         }
         return total;
@@ -52,7 +52,6 @@ public class Hand {
                 totalWithAcesAsOne += c.getRank().getDefaultValue();
             }
         }
-        // Мягкая рука: хотя бы один туз может считаться как 11 без перебора
         return aceCount > 0 && totalWithAcesAsOne + 10 <= 21;
     }
 }

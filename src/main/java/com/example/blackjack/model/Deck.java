@@ -25,7 +25,6 @@ public class Deck {
 
     public Card draw() {
         if (cards.isEmpty()) {
-            // Не перемешивать автоматически - это может создать бесконечную игру
             throw new IllegalStateException("Колода пуста. Нужно начать новый раунд.");
         }
         return cards.remove(cards.size() - 1);
@@ -40,7 +39,6 @@ public class Deck {
     }
 
     public boolean needsReshuffle() {
-        // Перемешивать, когда осталось меньше 15 карт
         return cards.size() < 15;
     }
 }
